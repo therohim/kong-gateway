@@ -1,0 +1,23 @@
+_format_version: "2.1"
+
+services:
+  - name: gist-service
+    url: https://api.github.com
+    routes:
+      - name: gists-route
+        paths:
+          - /gists
+    plugins:
+      - name: go-wait
+        config:
+          waittime: 5
+  - name: app1-service
+    url: http://host.docker.internal:3001
+    routes:
+      - name: app1-route
+        paths:
+          - /app1
+    plugins:
+      - name: go-wait
+        config:
+          waittime: 5
